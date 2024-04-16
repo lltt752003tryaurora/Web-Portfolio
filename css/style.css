@@ -1,0 +1,246 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* header */
+header {
+  z-index: 999;
+}
+
+header .navbar-nav li {
+  position: relative;
+}
+
+header .navbar-nav li::after {
+  content: "";
+  background-color: green;
+  height: 2px;
+  width: 0;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+header .navbar-nav li:hover::after {
+  width: 100%;
+}
+
+header .navbar-nav li:hover a {
+  color: green !important;
+}
+
+header .navbar-nav li.active::after {
+  width: 100%;
+}
+
+header .navbar-nav li.active a {
+  color: green !important;
+}
+
+/* cyber carousel */
+.cyber_carousel .carousel-inner .carousel-item {
+  height: 100vh;
+}
+
+.cyber_carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cyber_carousel .carousel-inner .carousel-item .carousel_content {
+  /* để chỉnh vị trí với thẻ cha là carousel-item có sẵn position-relative */
+  /* muốn phủ width, height 100% thì dùng 4 thuộc tính t,l,b,r = 0 */
+  /* cần thêm 4 thuộc tính t,l,b,r để tạo 1 overlay tạo cái màu bg-color */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(39, 43, 54, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.cyber_carousel .carousel-item .carousel_content img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.cyber_carousel .carousel-item .carousel_content h2 {
+  font-size: 74.6px;
+  margin-bottom: 8px;
+}
+
+.cyber_carousel .carousel-item .carousel_content p {
+  font-size: 3vw;
+  margin-bottom: 16px;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: none;
+}
+
+/* project */
+.cyber_project .project_content ul button.active {
+  background-color: green;
+  border: 2px solid green !important;
+  color: white;
+}
+
+.cyber_project .project_content .project_item {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.cyber_project .project_content .project_item .project_text {
+  transition: all 0.5s;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: 2px solid transparent;
+  border-top: none;
+}
+
+.cyber_project .project_content .project_item:hover .project_text {
+  /* border: 1px solid #28a745;    */
+  border-color: #28a745;
+}
+
+.cyber_project .project_content .project_item .project_text h4 {
+  transition: all 0.5s;
+}
+
+.cyber_project .project_content .project_item:hover .project_text h4 {
+  color: #28a745;
+}
+
+/* available */
+
+.cyber_avai {
+  background-image: url(../img/3.jpg);
+  background-attachment: fixed;
+  color: white;
+  padding: 60px 0;
+  position: relative;
+  text-align: center;
+}
+
+/* gọi before để lấy màu nền phủ lên */
+.cyber_avai::before {
+  /* lúc này before sẽ nằm trước container, container nằm sau nên z-index lớn hơn
+    nên chỉ cần thêm position: relative như ở before thì tự khắc nội dung sẽ được nổi lên
+     */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.305);
+}
+
+.avai_content {
+  display: block;
+  /* display: flex; */
+  gap: 20px;
+}
+
+.avai_content .avai_item {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px 35px 40px 35px;
+  transition: all 0.5s;
+}
+
+.avai_content .avai_item i {
+  font-size: 40px;
+  color: green;
+}
+
+.avai_content .avai_item h3 {
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.avai_content .avai_item:hover {
+  background-color: black;
+  border-color: white;
+}
+
+/* Quy tắc khi dùng @media với max-width:
+sẽ để các @media có giá trị max-width lớn hơn nằm trên 
+các @media có giá trị max-width nhỏ hơn
+(tránh bị ghi đè thuộc tính)
+*/
+
+/*sử dụng @media, nếu dùng max-width thì sẽ lấy tất cả thiết bị có 
+    vùng nhìn từ 0 cho đến giá trị max-width nhận vào */
+
+/* Khi ở vùng < 576px thì 
+    bỏ display: flex; đã được gọi ra ở trên, cho các item được hiển thị
+    trên cùng 1 cột khi ở vùng nhìn điện thoại */
+
+/* @media screen and (max-width: 768px) {
+  .avai_content {
+    flex-wrap: wrap;
+  }
+  .avai_content .avai_item {
+    width: 50%;
+  }
+} */
+
+/* @media screen and (max-width: 576px) {
+  .avai_content {
+    display: block;
+  }
+
+  Cách này cho mỗi item chiếm mỗi dòng, và wrap sẽ đẩy nó xuống dòng tiếp theo
+    giúp vẫn giữ nguyên được gap => ko cần chỉnh khoảng cách margin giữa các item 
+    như cách trên
+
+  
+    ko cần gọi lại vì đã gọi ở flex-wrap ở media dành cho laptop phía trên 
+   
+    .avai_content {
+        flex-wrap: wrap;
+    }
+
+  .avai_content .avai_item {
+    width: 100%;
+  }
+} */
+
+/* Quy tắc khi dùng @media với min-width:
+sẽ để các @media có giá trị min-width nhỏ hơn nằm trên 
+các @media có giá trị min-width nhỏ hơn
+(tránh bị ghi đè thuộc tính)
+*/
+
+/*sử dụng @media, nếu dùng min-width thì sẽ lấy tất cả thiết bị có 
+    vùng nhìn từ min-width nhận vào đến vô cực*/
+
+@media screen and (min-width: 576px) {
+  .avai_content {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .avai_content {
+    flex-wrap: wrap;
+  }
+  .avai_item {
+    width: calc(50%-20px);
+  }
+}
